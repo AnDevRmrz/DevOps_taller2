@@ -59,10 +59,11 @@ class ApplicationTestCase(unittest.TestCase):
         self.assertTrue(resp.is_json)
         self.assertEqual(resp.get_json(), self.data["1"])
 
-    def test_heroe_invalid_id_returns_500(self):
-        # Current implementation raises KeyError for unknown id, resulting in 500
+    def test_heroe_invalid_id_returns_404(self):
         resp = self.client.get("/999")
-        self.assertEqual(resp.status_code, 500)
+        self.assertEqual(resp.status_code, 404)
+        self.assertTrue(resp.is_json)
+        self.assertEqual(resp.get_json(), {"error": "not found", "id": "999"})
 
 
 if __name__ == "__main__":
