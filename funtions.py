@@ -5,7 +5,7 @@ def load_file(file_name: str) -> dict:
 
     line = file.readline()
     while len(line) > 0:
-        datos = line.split(",")
+        datos = line.split(";")
         llave = datos[0]
         record = {}
         record['name'] = datos[1]
